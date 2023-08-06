@@ -1,35 +1,36 @@
-﻿using UnityEngine;
+﻿using Common;
+using Cysharp.Threading.Tasks;
+using Loading;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class InitialState : IState<Bootstrap>, IEnterable, IExitable, ITickable
+public class InitialState : IState<Bootstrap>, IEnterable
 {
     public Bootstrap Initializer { get; }
+    public InitialState(Bootstrap initializer) => Initializer = initializer;
 
-    private float timer = 0;
+    private LoadingScreenProvider LoadingProvider => ProjectContext.I.LoadingScreenProvider;
+    private AsyncOperation _sceneLoadOperation;
 
-    public InitialState(Bootstrap initializer)
+    public async void OnEnter()
     {
-        Initializer = initializer;
+        _sceneLoadOperation = SceneManager.LoadSceneAsync(Constants.Scenes.INITIAL_SCENE);
+        while(!_sceneLoadOperation.isDone)
+            await UniTask.Yield();
+
+        await InitializeProjectContext();
     }
 
-    public void OnEnter()
+    private async Task InitializeProjectContext()
     {
-        Debug.Log("State 2 Entered");
-    }
+        ProjectContext.I.Initialize();
 
-    public void OnExit()
-    {
-        Debug.Log("State 2 Exited");
-    }
+        var loadingOperations = new Queue<ILoadingOperation>();
+        loadingOperations.Enqueue(ProjectContext.I.AssetProvider);
+        loadingOperations.Enqueue(new MenuLoadingOperation());
 
-    public void Tick()
-    {
-        Debug.Log("State 2 Tick: " + timer);
-        
-        timer += Time.deltaTime;
-
-        if (timer >= 0.3f)
-        {
-            Initializer.StateMachine.SwitchState<LoadingState>();
-        }
+        await LoadingProvider.LoadAndDestroy(loadingOperations);
     }
 }

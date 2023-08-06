@@ -1,23 +1,8 @@
-﻿using UnityEngine;
-
-public class BootstrapState : IState<Bootstrap>, IEnterable, IExitable
+﻿public class BootstrapState : IState<Bootstrap>, IEnterable
 {
     public Bootstrap Initializer { get; }
 
-    public BootstrapState(Bootstrap initializer)
-    {
-        Initializer = initializer;
-    }
+    public BootstrapState(Bootstrap initializer) => Initializer = initializer;
 
-    public void OnEnter()
-    {
-        Debug.Log("State 1 Entered");
-        
-        Initializer.StateMachine.SwitchState<InitialState>();
-    }
-
-    public void OnExit()
-    {
-        Debug.Log("State 1 Exited");
-    }
+    public void OnEnter() => Initializer.StateMachine.SwitchState<InitialState>();
 }
