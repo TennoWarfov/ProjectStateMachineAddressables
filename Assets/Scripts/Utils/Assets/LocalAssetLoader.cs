@@ -14,12 +14,11 @@ namespace Utils.Assets
         {
             var handle = Addressables.InstantiateAsync(assetId, parent);
             _cachedObject = await handle.Task;
-            if(_cachedObject.TryGetComponent(out T component) == false)
-                throw new NullReferenceException($"Object of type {typeof(T)} is null on " +
-                                                 "attempt to load it from addressables");
-            return component;
+            return _cachedObject.TryGetComponent(out T component) == false
+                ? throw new NullReferenceException($"Object of type {typeof(T)} is null on attempt to load it from addressables")
+                : component;
         }
-        
+
         public async UniTask<Disposable<T>> LoadDisposable<T>(string assetId, Transform parent = null)
         {
             var component = await Load<T>(assetId, parent);

@@ -17,14 +17,13 @@ namespace Loading
         [SerializeField] private TextMeshProUGUI _loadingInfo;
         [SerializeField] private float _barSpeed;
 
-        private readonly int _screenFadeDuration = 1;
+        private readonly int _screenFadeDuration = 1000;
         private readonly int _crossFadeStartParamenterID = Animator.StringToHash("Start");
         private readonly int _crossFadeEndParamenterID = Animator.StringToHash("End");
         private float _targetProgress;
         
         public async UniTask Load(Queue<ILoadingOperation> loadingOperations)
         {
-
             _canvas.enabled = true;
             _crossFadeAnimator.enabled = true;
             await CrossFadeAnimate(_crossFadeEndParamenterID);

@@ -23,7 +23,7 @@ namespace Loading
             var editorGame = scene.GetRoot<GameProcess>();
             onProgress?.Invoke(0.85f);
 
-            var environment = await ProjectContext.I.AssetProvider.LoadSceneAdditive("Sand");
+            var environment = await ProjectContext.I.AssetProvider.LoadSceneAdditive("Environment");
             onProgress?.Invoke(1.0f);
         }
     }
