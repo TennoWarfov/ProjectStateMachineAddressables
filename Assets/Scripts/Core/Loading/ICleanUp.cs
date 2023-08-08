@@ -1,5 +1,5 @@
 public interface ICleanUp
 {
-    string SceneName { get; }
+    string SceneName { get; set; }
     void Cleanup();
 }

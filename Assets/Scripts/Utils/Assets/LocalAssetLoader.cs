@@ -29,9 +29,12 @@ namespace Utils.Assets
         {
             if(_cachedObject == null)
                 return;
+
             _cachedObject.SetActive(false);
             Addressables.ReleaseInstance(_cachedObject);
+            
             _cachedObject = null;
+            Debug.Log($"Unloaded object: {_cachedObject}");
         }
     }
 }

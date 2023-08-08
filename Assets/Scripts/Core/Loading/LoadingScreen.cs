@@ -18,15 +18,20 @@ namespace Loading
         [SerializeField] private float _barSpeed;
 
         private readonly int _screenFadeDuration = 1000;
-        private readonly int _crossFadeStartParamenterID = Animator.StringToHash("Start");
+        //private readonly int _crossFadeStartParamenterID = Animator.StringToHash("Start");
         private readonly int _crossFadeEndParamenterID = Animator.StringToHash("End");
         private float _targetProgress;
-        
+
+        private void Awake()
+        {
+            DontDestroyOnLoad(this);
+        }
+
         public async UniTask Load(Queue<ILoadingOperation> loadingOperations)
         {
             _canvas.enabled = true;
-            _crossFadeAnimator.enabled = true;
-            await CrossFadeAnimate(_crossFadeEndParamenterID);
+
+            await UniTask.Delay(_screenFadeDuration);
 
             StartCoroutine(UpdateProgressBar());
             
@@ -39,15 +44,10 @@ namespace Loading
                 await WaitForBarFill();
             }
             
-            await CrossFadeAnimate(_crossFadeStartParamenterID);
-            _crossFadeAnimator.enabled = false;
-            _canvas.enabled = false;
-        }
-
-        private async Task CrossFadeAnimate(int id)
-        {
-            _crossFadeAnimator.SetTrigger(id);
+            _crossFadeAnimator.SetTrigger(_crossFadeEndParamenterID);
             await UniTask.Delay(_screenFadeDuration);
+
+            _canvas.enabled = false;
         }
 
         private void ResetFill()
@@ -65,8 +65,10 @@ namespace Loading
         {
             while (_progressFill.value < _targetProgress)
             {
+                Debug.Log("Waiting");
                 await UniTask.Delay(1);
             }
+            
             await UniTask.Delay(TimeSpan.FromSeconds(0.15f));
         }
 

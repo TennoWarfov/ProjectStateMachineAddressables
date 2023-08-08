@@ -12,7 +12,7 @@ namespace Loading
         public async UniTask Load(Action<float> onProgress)
         {
             onProgress?.Invoke(0.5f);
-            var loadOp = SceneManager.LoadSceneAsync(Constants.Scenes.MAIN_MENU_SCENE, LoadSceneMode.Single);
+            var loadOp = SceneManager.LoadSceneAsync(Constants.Scenes.MAIN_MENU_SCENE, LoadSceneMode.Additive);
             while (loadOp.isDone == false)
                 await UniTask.Yield();
             
