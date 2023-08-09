@@ -30,6 +30,7 @@ public class InitialState : IState<Bootstrap>, IEnterable
         var loadingOperations = new Queue<ILoadingOperation>();
         loadingOperations.Enqueue(ProjectContext.I.AssetProvider);
         loadingOperations.Enqueue(new MenuLoadingOperation());
+
         await LoadingProvider.LoadAndDestroy(loadingOperations);
     }
 }

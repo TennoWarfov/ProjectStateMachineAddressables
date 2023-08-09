@@ -32,9 +32,8 @@ namespace Utils.Assets
 
             _cachedObject.SetActive(false);
             Addressables.ReleaseInstance(_cachedObject);
-            
-            _cachedObject = null;
             Debug.Log($"Unloaded object: {_cachedObject}");
+            _cachedObject = null;
         }
     }
 }

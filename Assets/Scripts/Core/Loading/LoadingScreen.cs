@@ -22,11 +22,6 @@ namespace Loading
         private readonly int _crossFadeEndParamenterID = Animator.StringToHash("End");
         private float _targetProgress;
 
-        private void Awake()
-        {
-            DontDestroyOnLoad(this);
-        }
-
         public async UniTask Load(Queue<ILoadingOperation> loadingOperations)
         {
             _canvas.enabled = true;
@@ -65,7 +60,6 @@ namespace Loading
         {
             while (_progressFill.value < _targetProgress)
             {
-                Debug.Log("Waiting");
                 await UniTask.Delay(1);
             }
             
