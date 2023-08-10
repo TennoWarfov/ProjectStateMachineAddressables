@@ -6,28 +6,28 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/BootstrapScene.unity
+    path: Assets/ProjectManagementArchitecture/Scenes/BootstrapScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/InitialScene.unity
+    path: Assets/ProjectManagementArchitecture/Scenes/InitialScene.unity
     guid: 90d34ae4386482e43af16072bec4c285
   - enabled: 1
-    path: Assets/Scenes/MainMenuScene.unity
+    path: Assets/ProjectManagementArchitecture/Scenes/MainMenuScene.unity
     guid: a7de901f0a6fd1d4aabadc6ff393d653
   - enabled: 1
-    path: Assets/Scenes/GameLevels/GameLevel 2.unity
+    path: Assets/ProjectManagementArchitecture/Scenes/GameLevels/GameLevel 2.unity
     guid: 1d4b2890adb037d45911073b446b9626
   - enabled: 1
-    path: Assets/Scenes/GameLevels/GameLevel 1.unity
+    path: Assets/ProjectManagementArchitecture/Scenes/GameLevels/GameLevel 1.unity
     guid: beda0dcb8d2c2cb4aaafe3d548ad6818
   - enabled: 1
-    path: Assets/Scenes/GameLevels/GameLevel 3.unity
+    path: Assets/ProjectManagementArchitecture/Scenes/GameLevels/GameLevel 3.unity
     guid: b615afb845f660d40b262b64c49ff529
   - enabled: 1
-    path: Assets/Scenes/GameLevels/GameLevel 4.unity
+    path: Assets/ProjectManagementArchitecture/Scenes/GameLevels/GameLevel 4.unity
     guid: bb27e1b44947d3d4995ffe27c711f361
   - enabled: 1
-    path: Assets/Scenes/GameLevels/GameLevel 5.unity
+    path: Assets/ProjectManagementArchitecture/Scenes/GameLevels/GameLevel 5.unity
     guid: 05a30bef583fad043b8a42e0970dab0f
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 6a719b38a64234a4b9ca349460eefd47, type: 2}
